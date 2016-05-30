@@ -33,6 +33,11 @@
                                             <action selector="selectFromCamera:" destination="BYZ-38-t0r" id="fPW-vN-jmU"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem enabled="NO" title="Bright" id="16D-gB-uq8">
+                                        <connections>
+                                            <action selector="brightImage:" destination="BYZ-38-t0r" id="coq-Gr-dJy"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QUT-0L-j9b"/>
                                     <barButtonItem enabled="NO" title="Filter" id="Vvf-Ul-1Lb">
                                         <connections>
@@ -71,6 +76,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="brightButton" destination="16D-gB-uq8" id="hLK-8Q-jr2"/>
                         <outlet property="filterButton" destination="Vvf-Ul-1Lb" id="XNH-Nx-btE"/>
                         <outlet property="imageView" destination="s5x-Vj-d6p" id="rcP-W5-cDT"/>
                         <outlet property="saveButton" destination="YNr-94-KH0" id="8Ot-4S-fXA"/>

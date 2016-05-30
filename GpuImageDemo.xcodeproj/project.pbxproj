@@ -601,6 +601,7 @@
 				DB38A41B1CF81D6B0016A49C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB38A41C1CF81D6B0016A49C /* Build configuration list for PBXNativeTarget "GpuImageDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -609,6 +610,7 @@
 				DB38A41E1CF81D6B0016A49C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB38A41F1CF81D6B0016A49C /* Build configuration list for PBXNativeTarget "GpuImageDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -617,6 +619,7 @@
 				DB38A4211CF81D6B0016A49C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

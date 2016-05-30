@@ -14,11 +14,13 @@
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *brightButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)saveImage:(id)sender;
 - (IBAction)filterButton:(id)sender;
 - (IBAction)selectFromAlbum:(id)sender;
 - (IBAction)selectFromCamera:(id)sender;
+- (IBAction)brightImage:(id)sender;
 
 @end
 
@@ -137,11 +139,47 @@
     
     [self presentViewController:photoPicker animated:YES completion:NULL];
 }
+
+- (IBAction)brightImage:(id)sender {
+    
+    [self filterImage:self.imageView.image];
+}
+
+#pragma mark - 渲染图片
+- (void)filterImage:(UIImage *)image {
+    
+    // 创建一个亮度滤镜
+    GPUImageBrightnessFilter *brightFilter = [[GPUImageBrightnessFilter alloc] init];
+    brightFilter.brightness = 0.5f;//(这个值就是调节亮度的值)
+    
+    // 设置渲染区域
+    [brightFilter forceProcessingAtSize:image.size];
+    
+    // 我理解的是渲染区域不存在的话，就采用别的frame区域
+    [brightFilter useNextFrameForImageCapture];
+    
+    // 获取数据源(也可以用url初始化)
+    GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+    
+    // 添加上滤镜
+    [stillImageSource addTarget:brightFilter];
+    
+    // 渲染
+    [stillImageSource processImage];
+    
+    // 得到渲染后的图片
+    UIImage *filterImage = [brightFilter imageFromCurrentFramebuffer];
+    
+    // 加载看看
+    self.imageView.image = filterImage;
+
+}
+
 #pragma mark - imagePickerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     self.saveButton.enabled = YES;
     self.filterButton.enabled = YES;
-    
+    self.brightButton.enabled = YES;
     originalImage = [info valueForKey:UIImagePickerControllerOriginalImage];
     
     [self.imageView setImage:originalImage];
